@@ -8,6 +8,7 @@ from django.http import JsonResponse
 import time 
 from .models import BlogsPost
 from blog import models
+from django.contrib.auth import authenticate
  
 def ajax_list(request):
     a = list(range(100))
@@ -65,9 +66,9 @@ def blogIndex(request):
     if request.method == 'POST':
         userdata = {}
         userdata['username'] = request.POST['username']
-        userdata['psw'] = request.POST['password']
+        userdata['password'] = request.POST['Password']
         
-        user = User.objects.filter(username = userdata['username'],password = userdata['psw'])
+        user = authenticate(username = userdata['username'],password = userdata['password'])
         if user:
             msg = "用户{0}成功登陆".format(userdata['username'])
             return render(request, "report.html", {'msg':msg})
@@ -87,7 +88,7 @@ def blogIndex(request):
         #         return HttpResponseRedirect('/login/')
     else:
         uf = UserForm()
-    return render(request,'index.html', {'blog_list':blog_list})   # 返回index.html页面
+        return render(request,'index.html', {'blog_list':blog_list})   # 返回index.html页面
 
 
 #登录

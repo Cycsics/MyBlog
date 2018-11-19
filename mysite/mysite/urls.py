@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^search$', search.search),
     url(r'^search-post$', search2.search_post),
     url(r'^ajax_list/$', views.ajax_list, name='ajax-list'),
-    url(r'^login$',views.login,name = 'login'),
+    url(r'^login$',views.blogIndex,name = 'login'),
     url(r'^blogAdd$',views.blogAdd,name='blogAdd'),
     url(r'^register$',views.register,name = 'register'),
     # url(r'^login/',views.login),
