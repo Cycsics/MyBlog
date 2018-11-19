@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'webpack_loader',
 ]
 
 STATIC_URL = '/static/'
