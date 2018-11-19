@@ -32,6 +32,26 @@
                 margin-left: auto;
             }
         </style>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#password2").keyup(function(){
+                    var a = $('#password1').val();
+                    //alert(a);
+                    var b = $('#password2').val();
+                    //alert(b);
+                    if (a == b) {
+                        $('#registerbtn').removeAttr('disabled');
+                        $("#errorMsg").hide()
+                    }
+                    else {
+                        $('#registerbtn').attr('disabled', 'disabled');
+                        // window.location.reload()
+                        // $("#errorMsg").append("请输入两次一样的密码");
+                        $("#errorMsg").show()
+                    }
+                });
+            });
+        </script>
     </head>
     <body>
         
@@ -42,20 +62,27 @@
         {% block "bloglist" %}
         <div class = "container bs-docs-container ">
             <div class="bs-example bs-example-tabs" >
-                <form id="blogAddForm" action="{% url 'blogAdd' %}" method="post">
+                <form id="blogAddForm" action="{% url 'register' %}" method="post">
                     <div class="modal-body">
                         <div class="ui left undefined undefined input form-group">
                             <div class="required field"><label><h6>用户名</h6></label></div>
-                            <input type="text" class="form-control" placeholder="Blog Title" id = "username" name = "username">
+                            <input type="text" class="form-control" id = "username" name = "username" required = "required" placeholder="请输入用户名" >
                         </div>
                         <div class="ui left undefined undefined input form-group">
-                            <div class="required field"><label><h6>密码</h6></label></div>
-                            <textarea class="form-control" rows="10" placeholder="Blog Content" id = "password" name = "password"></textarea>
+                            <div class="required field"><label><h6>输入密码</h6></label></div>
+                            <input class="form-control" type = "password"  id = "password1" name = "password1" required = "required" placeholder="请输入密码" onkeyup="KeyUp()"></textarea>
+                        </div>
+                        <div class="ui left undefined undefined input form-group">
+                            <div class="required field"><label><h6>重复密码&nbsp;&nbsp;<span id="errorMsg" style="display:none;color: red;">请输入两次一样的密码</span></h6></label></div>
+                            <input class="form-control" type = "password"  id = "password2" name = "password2" required = "required" placeholder="请重复输入密码" onkeyup="KeyUp()"></textarea>
                         </div>
                     </div>
                         
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" id = "loginbtn">Submit</button>
+                        {% ifequal password1 password2 %}
+                            
+                        {% endifequal%}
+                        <button type="submit" class="btn btn-primary" id = "registerbtn" disabled = "disabled">确认</button>
                     </div>
                 </form>
             </div>

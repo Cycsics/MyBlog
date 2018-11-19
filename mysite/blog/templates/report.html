@@ -43,7 +43,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    {% if urlname == 'blogAdd' %}
                     <button type="submit" class="btn btn-primary" id = "loginbtn" ><a href="{% url 'blogAdd'%}" style="color:white">继续创建</a></button>
+                    {% elif urlname == 'register' %}
+                    <!-- <button type="submit" class="btn btn-primary" id = "loginbtn" ><a href="{% url 'register'%}" style="color:white">继续创建</a></button> -->
+                    {% endif %}
                     <button type="submit" class="btn btn-primary" id = "loginbtn" ><a href="{% url 'index'%}" style="color:white">返回首页</a></button>
                 </div>
             </main>
