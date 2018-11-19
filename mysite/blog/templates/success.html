@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Success</title>
+    <style>
+        .bs-example{
+            margin-right: 0;
+            margin-left: 0;
+            background-color: #fff;
+            border-color: #ddd;
+            border-width: 1px;
+            border-radius: 4px 4px 0 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            position: relative;
+            padding: 45px 15px 15px;
+            margin: 0 -15px 15px;
+        }
+        .container{
+            width: 750px;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block "bloglist" %}
+    <div class = "container-fluid">
+        <div class = "row flex-xl-nowrap">
+            <!-- <form action="/search" method="get">
+                <input type="text" name="q">
+                <input type="submit" value="搜索">
+            </form> -->
+            <main class = "col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+                <div class = "container bs-docs-container ">
+                    <div class="bs-example bs-example-tabs" >
+                        <h1>{{msg}}</h1>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id = "loginbtn" ><a href="{% url 'blogAdd'%}" style="color:white">继续创建</a></button>
+                    <button type="submit" class="btn btn-primary" id = "loginbtn" ><a href="{% url 'index'%}" style="color:white">返回首页</a></button>
+                </div>
+            </main>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

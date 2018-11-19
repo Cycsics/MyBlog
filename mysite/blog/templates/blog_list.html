@@ -1,0 +1,15 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <style>
+        
+        </style>
+    </head>
+    <body>
+            {% for blog in blog_list %}
+                <h1>{{ blog.title }}</h2>
+                <p>{{ blog.timestamp }}</p>
+                <p>{{ blog.body }}</p>
+            {% endfor %}
+    </body>
+</html>

@@ -1,0 +1,155 @@
+{% load staticfiles %}
+<html>
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- <title>{% block head_title %}Welcome to my blog{% endblock %}</title> -->
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src = "../templates/js/jquery-3.3.1.min.js"></script> -->
+    <style>
+        #masthead{
+            background: linear-gradient(45deg,#020031 0,#6d3353 100%);    
+            box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+            margin-bottom: 0;
+            color: #fff;
+            padding: 90px 0 110px;
+            text-align: center;
+            text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
+        }
+        .nav{
+            float: left;
+            margin: 0;
+        }
+    </style>
+    <!-- <script type="text/javascript">
+        $("#loginbtn").click(function() {
+            document.write("我日死你的妈");
+            window.location.reload();
+            $("body").append("fuck");
+            $.ajax({
+                cache:false,
+                type:"POST",
+                url:"{% url 'index' %}",
+                dataType:'json',
+                data:$('#loginform').serialize(),
+                //通过id找到提交form表单，并将表单转成字符串
+                async:true,
+                //异步为真，ajax提交的过程中，同时可以做其他的操作
+                success:function (data) {
+                    //jquery3以后，会将回传过来的字符串格式的data自动json解析不用再使用一遍JSON.parse(data)了，不然反而会在控制台报错
+                    if(data.status=="success"){
+                        location.reload();
+                    }else if(data.status=="fail"){
+                        $('#login-fail').html(data.msg);
+                    }
+                }
+            });
+        });
+        
+        //如果显示了错误信息，修改输入框内容，错误信息隐藏
+        
+        $("input").bind('input propertychange', function() {
+            $('#login-fail').html('');
+        });
+        
+    </script> -->
+</head>
+<body data-twttr-rendered="true" class="bs-docs-home">
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+            <a class="navbar-brand" href= "{% url 'index' %}">Blog</a>
+            <button class="btn btn-primary navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    {% if username %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blogAdd'%}">Creat New Blog</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            DropDown
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" action="/search" method="get">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name = "search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin: 1rem 15px 0;">搜索</button>
+                </form>
+                {% if username %}
+                <button  class="btn btn-success my-2 my-sm-0" data-toggle="modal" type="button">{{username}}</a></button>
+                
+                {% else %}
+                <button  class="btn btn-success my-2 my-sm-0" data-toggle="modal" type="button" data-target="#myModal">登陆</a></button>
+                {% endif %}
+            </div>
+        </nav>
+
+    {% block "bloglist" %}
+                        
+    {% endblock %}
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="loginform" action="{% url 'login' %}" method="post">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">登陆</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    
+                    </div>
+                    <div class="modal-body">
+                        
+                            <div class = "ui tab active" data-tab = "tab_user358" style="margin: 10px;">
+                                
+                                <section>
+                                    
+                                        <div class="required field"><label><h6>UserName</h6></label></div>
+                                        <div class = "ui left undefined undefined input form-group">
+                                            <input type="text" name = "username" placeholder= "请输入用户名称呼" value class = "form-control" >
+                                        </div>
+                                        <div class="required field"><label for = "exampleInputPassword1"><h6>Password</h6></label></div>
+                                        <div class = "ui left undefined undefined input">
+                                            <input class = "form-control" type="password" name = "Password" placeholder= "请输入用户密码" value>
+                                        </div>    
+                                    
+                                </section>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary" id = "loginbtn">登陆</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <!-- <h6>提交的数据：username:{{ username }},password:{{ password }}</h6> -->
+            <p class="text-muted">@Copyright CYCSICS</p>
+        </div>
+    </footer>
+</body>
+</html>
