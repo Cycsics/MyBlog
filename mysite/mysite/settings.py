@@ -87,6 +87,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+# #auth指定验证数据models
+# AUTH_USER_MODEL = 'blog.User'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
