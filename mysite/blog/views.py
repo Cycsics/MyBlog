@@ -81,7 +81,7 @@ def blogIndex(request):
                 msg = "用户{0}成功登陆".format(userdata['username'])
                 return render(request, "report.html", {'msg':msg,'status':'success'})
         else:
-            msg = "登陆失败，请重新登陆"
+            msg = "用户名或密码错误，请重新登陆"
             return render(request,"report.html",{'msg':msg,'status':'failed'})
         # uf = UserForm(request.POST)
         # if uf.is_valid():
@@ -121,4 +121,10 @@ def register(request):
             return render(request,'report.html',{'msg':msg,'urlname':'register'})
 
 def log_out(request):
+    logout(request)
+    return render(request,'index.html',{})
+
+def blogInfo(request):
+    if request.method == 'GET':
+        pass
     pass

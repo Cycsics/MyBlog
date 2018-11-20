@@ -35,6 +35,8 @@ urlpatterns = [
     url(r'^login$',views.blogIndex,name = 'login'),
     url(r'^blogAdd$',views.blogAdd,name='blogAdd'),
     url(r'^register$',views.register,name = 'register'),
+    url(r'^logout$',views.log_out,name = 'logout'),
+    url(r'^blog/$',views.blogInfo,name = 'blogInfo'),
     # url(r'^login/',views.login),
 ]
 

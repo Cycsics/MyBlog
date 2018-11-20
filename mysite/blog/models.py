@@ -37,6 +37,7 @@ class Tag(models.Model):
 # Create your models here.
 class BlogsPost(models.Model):
     title = models.CharField(max_length = 150)                 # 博客标题
+    Author = models.CharField(max_length = 50)                 # 博客作者
     simple = models.TextField(max_length = 50)                 # 博客正文简略
     body = models.TextField()                                  # 博客正文
     timestamp = models.DateTimeField()                         # 创建时间

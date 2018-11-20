@@ -67,7 +67,7 @@
                     </form> -->
                     <main class = "col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
                         {% for blog in blog_list reversed%}
-                            <h1>{{ blog.title }}</h2>
+                            <a href="{% url 'blogInfo' %}"><h1>{{ blog.title }}</h1></a>
                             <p>{{ blog.timestamp }}</p>
                             <p>{{ blog.body }}</p>
                         {% endfor %}
