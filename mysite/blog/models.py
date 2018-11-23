@@ -36,6 +36,7 @@ class Tag(models.Model):
 
 # Create your models here.
 class BlogsPost(models.Model):
+    # nid = models.AutoField(primary_key=True)
     title = models.CharField(max_length = 150)                 # 博客标题
     Author = models.CharField(max_length = 50)                 # 博客作者
     simple = models.TextField(max_length = 50)                 # 博客正文简略

@@ -124,7 +124,10 @@ def log_out(request):
     logout(request)
     return render(request,'index.html',{})
 
-def blogInfo(request):
+def blogInfo(request,uid):
     if request.method == 'GET':
+        bloginfo = BlogsPost.objects.get(id = uid)
+        # print(uid)
+        return render(request,'blog_info.html',{'blogInfo':bloginfo})
+    else:
         pass
-    pass
