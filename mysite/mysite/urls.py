@@ -29,7 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # url(r'^$', TemplateView.as_view(template_name="index.html")),
     # url(r'^$', blogIndex.as_view(),name="index"),
-    path('index' , blogIndex,name = 'index'),
+    path('' , blogIndex,name = 'index'),
     path('search-form', search.search_form),
     path('search', search.search),
     path('search-post', search2.search_post),
@@ -39,6 +39,7 @@ urlpatterns = [
     path('register',views.register,name = 'register'),
     path('logout',views.log_out,name = 'logout'),
     path('blog/<uid>',views.blogInfo,name = 'blogInfo'),
+    path('blog/(?P<uid>d+)/change$',views.blogChange,name = 'blogChange'),
     # url(r'^login/',views.login),
 ]
 

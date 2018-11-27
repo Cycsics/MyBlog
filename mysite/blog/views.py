@@ -54,6 +54,7 @@ def blogAdd(request):
             print(blogInfo)
             blogCreate = models.BlogsPost(
                 title = blogInfo['Title'],
+                Author = request.user.username,
                 simple = blogInfo['content'][:50],
                 body = blogInfo['content'],
                 timestamp = blogInfo['Time']
@@ -120,6 +121,20 @@ def register(request):
             msg = "成功注册用户,用户名为：{0}".format(username)
             return render(request,'report.html',{'msg':msg,'urlname':'register'})
 
+def blogChange(request,uid):
+    if request.method == 'GET':
+        bloginfo = BlogsPost.objects.get(id = uid)
+        return render(request, 'blogChange.html', {'blogInfo': bloginfo})
+    elif request.method == 'POST':
+        blogInfo = {}
+        blogInfo['Title'] = request.POST['title']
+        blogInfo['content'] = request.POST['content']
+        blog = BlogsPost.objects.get(id = uid)
+        blog.body = blogInfo['content']
+        blog.save()
+        msg = "成功修改博客"
+        return render(request,'report.html',{'msg':msg})
+
 def log_out(request):
     logout(request)
     return render(request,'index.html',{})
@@ -128,6 +143,6 @@ def blogInfo(request,uid):
     if request.method == 'GET':
         bloginfo = BlogsPost.objects.get(id = uid)
         # print(uid)
-        return render(request,'blog_info.html',{'blogInfo':bloginfo})
+        return render(request,'blogInfo.html',{'blogInfo':bloginfo})
     else:
         pass

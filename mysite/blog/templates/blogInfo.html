@@ -12,40 +12,30 @@
         <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
         <!-- <script type="text/javascript" src = "../templates/js/jquery-3.3.1.min.js"></script> -->
         <style>
-            .container-fluid{
-                width: 100%;
+            .container{
                 max-width: 38rem;
-                padding-right: 1rem;
                 padding-left: 1rem;
-                margin-right: auto;
-                margin-left: auto;
+                padding-right: 1rem;
+                margin-left: 5rem;
+                margin-right: 5rem;
             }
             .row{
                 display: flex;
                 flex-wrap: wrap;
-                margin-right: -15px;
-                margin-left: -15px;
-            }
-            .bd-toc{
-                position: sticky;
-                top: 4rem;
-                height: calc(100vh - 4rem);
-                overflow-y: auto;
-                order: 2;
-                padding-top: 1.5rem;
-                padding-bottom: 1.5rem;
-                /* font-size: .875rem; */
-                border-left: 1px solid rgba(0,0,0,.1);
+                {#margin-right: -15px;#}
+                {#margin-left: -15px;#}
             }
             *{
                 box-sizing: border-box;
             }
-            .bd-sidebar{
-                position: sticky;
-                top: 4rem;
-                z-index: 1000;
-                height: calc(100vh - 4rem);
-                border-right: 1px solid rgba(0,0,0,.1);
+            .post-title{
+                margin-top : 0;
+            }
+            .post-date {
+                display: block;
+                margin-top: -.5rem;
+                margin-bottom: 1rem;
+                color: #9a9a9a;
             }
         </style>
     </head>
@@ -59,22 +49,23 @@
                 <h1>Blog</h1>
             </div>
     </div>
-    <div class = "container-fluid">
-            <div class = "row flex-xl-nowrap">
-                <!-- <form action="/search" method="get">
-                    <input type="text" name="q">
-                    <input type="submit" value="搜索">
-                </form> -->
-                <main class = "col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
-                    <h1>{{ blogInfo.title }}</h1>
-                    <p>{{ blogInfo.timestamp }}</p>
-                    <p>{{ blogInfo.Author }}</p>
+    <div class = "container">
+            <div class = "post">
+{#                <main class = "col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">#}
+                    <h1 class="post-title">{{ blogInfo.title }}</h1>
+                    <span class="post-date">{{ blogInfo.timestamp }}</span>
+                    <div class="tweet-button"><a>{{ blogInfo.Author }}</a></div>
                     <p>{{ blogInfo.body }}</p>
-                </main>
+{#                </main>#}
 
 
             </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id = "Change"><a href="{% url 'blogChange' blogInfo.id %}" style="color: white">修改内容</a></button>
+                <button type="submit" class="btn btn-primary" id = "returnIndex"><a href="{% url 'index' %}" style="color: white">返回首页</a></button>
+            </div>
         </div>
+
     {% endblock %}
     </body>
 </html>
