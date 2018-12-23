@@ -68,7 +68,9 @@
 
             </div>
             <div class="modal-footer">
+                {% if request.user.is_authenticated %}
                 <button type="submit" class="btn btn-primary" id = "Change"><a href="{% url 'blogChange' blogInfo.id %}" style="color: white">修改内容</a></button>
+                {% endif %}
                 <button type="submit" class="btn btn-primary" id = "returnIndex"><a href="{% url 'index' %}" style="color: white">返回首页</a></button>
             </div>
         </div>
